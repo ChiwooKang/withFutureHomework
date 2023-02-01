@@ -9,7 +9,7 @@ public class Book {
 	private String bookNo;
 	private String bookTitle;
 	private String bookWriter;
-	
+	private boolean bookAvail;
 	
 	private ArrayList<Book> bookList = new ArrayList<Book>();
 	
@@ -39,6 +39,13 @@ public class Book {
 		this.bookWriter = bookWriter;
 	}
 
+	public boolean bookAvail() {
+		return bookAvail;
+	}
+	
+	public void setbookAvail(boolean bookAvail) {
+		this.bookAvail = bookAvail;
+	}
 }
 
 
