@@ -115,7 +115,7 @@ public class BookmanageView {
 	            if (cnt == 0) {
 	                System.out.println("해당 도서가 존재하지 않습니다. 도서 번호를 다시 입력하세요.");
 	            } else {
-	                break;
+	                break;// 
 	            }
 	        } 
 		}
@@ -154,19 +154,19 @@ public class BookmanageView {
 		                        cnt++;
 		                        System.out.println("도서 번호 중복입니다. 다시 입력하세요.");
 		                        break;
-		                    } 
-		                } 
+		                    } // end if
+		                } // end for
 		                if(cnt==0) {
 		                    book.setBookNo(temp);
 		                    break;
 		                }
-		            } 
+		            } // end while
 		            System.out.println("책 제목 입력");
 		            book.setBookTitle(sc.nextLine());
 		            System.out.println("작가 입력");
 		            book.setBookWriter(sc.nextLine());
 		           
-		            
+		            // 컨펌 후에 리스트에 객체 저장
 		            System.out.println("도서번호 : " + book.getBookNo());
 		            System.out.println("도서제목 : " + book.getBookTitle());
 		            System.out.println("작가  : " + book.getBookWriter());
