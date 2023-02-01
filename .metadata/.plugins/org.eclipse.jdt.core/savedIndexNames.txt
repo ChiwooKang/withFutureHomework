@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\workspace\withfure_homework\.metadata\.plugins\org.eclipse.jdt.core
+2289979518.index
+1650135229.index
+1865797976.index

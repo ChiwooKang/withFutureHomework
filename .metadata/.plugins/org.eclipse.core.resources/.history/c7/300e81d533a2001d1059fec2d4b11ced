@@ -1,0 +1,93 @@
+package week1.bookmanage.vo;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Book {
+	Scanner sc = new Scanner(System.in);
+	
+	private String bookNo;
+	private String bookTitle;
+	private String bookWriter;
+	private boolean bookAvail;
+	
+	private ArrayList<Book> bookList = new ArrayList<Book>();
+	
+	
+
+	public String getBookNo() {
+		return bookNo;
+	}
+
+	public void setBookNo(String bookNo) {
+		this.bookNo = bookNo;
+	}
+
+	public String getBookTitle() {
+		return bookTitle;
+	}
+
+	public void setBookTitle(String bookTitle) {
+		this.bookTitle = bookTitle;
+	}
+
+	public String getBookWriter() {
+		return bookWriter;
+	}
+
+	public void setBookWriter(String bookWriter) {
+		this.bookWriter = bookWriter;
+	}
+
+	public boolean bookAvail() {
+		return bookAvail;
+	}
+	
+	public void setbookAvail(boolean bookAvail) {
+		this.bookAvail = bookAvail;
+	}
+
+
+	public void view() {
+		while(true) {
+			System.out.println("도서관리 프로그램입니다.");
+			System.out.println("1.전체 조회/2.도서 번호로 조회/3.도서 업데이트/4.도서 삭제/0.종료");
+			String input=sc.nextLine();
+			
+			switch(input) {
+			case("1") : searchAll();break;
+			case("2") : searchNumber(); break;
+			case("3") : updateBook(); break;
+			case("4") : deleteBook(); break;
+			case("0") :
+				System.out.println("프로그램을 종료합니다.");
+				System.exit(0);
+				break;
+			default : System.out.println("메뉴에 작성된 번호만 입력해주세요!");
+				break;
+		
+			}
+		}
+		
+	}
+	
+	public void searchAll() {
+		
+		Book book = new Book();
+		
+		while(true) {
+			
+			for(int i=0; i<bookList.size(); i++) {
+				System.out.println("===============================");
+                System.out.println("책 번호 : " + bookList.get(i).getbookNo());
+                System.out.println("책 제목 : " + bookList.get(i).getBookTitle());
+                System.out.println("지은이  : " + bookList.get(i).bookWriter());
+                System.out.println("===============================\n");
+			}
+			
+		}
+	}
+	
+	
+	
+}

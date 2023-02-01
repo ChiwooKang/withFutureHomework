@@ -1,0 +1,42 @@
+package homework;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+class Solution {
+    public String solution(String s) {
+        String[] arr = s.split(" ");
+        BigDecimal min = new BigDecimal(Double.MAX_VALUE);
+        BigDecimal max = new BigDecimal(Double.MIN_VALUE);
+        for (String num : arr) {
+        BigDecimal n = new BigDecimal(num);
+            if (n.compareTo(min) < 0) {
+            min = n;
+        }   
+            if (n.compareTo(max) > 0) {
+            max = n;
+        }
+        List<BigDecimal> list = new ArrayList<BigDecimal>;
+        for(String num2 : arr) {
+        	list.add(new BigDecimal(num2));
+        }
+        
+        Collections.sort(list);
+        
+        for(BigDecimal number : list) {
+        	System.out.println(" number : " + number);
+        }
+    }
+    return min + " " + max;
+    }
+    
+	public static void main(String[] args) {
+		
+		Solution solution = new Solution();
+		solution.solution("111111111111111111111111111111111111111111111111111111 111111111111111111111111111111111111111111111111111111");
+		System.out.println(solution.solution("111111111111111111111111111111111111111111111111111111 111111111111111111111111111111111111111111111111111111"));
+	}
+
+}

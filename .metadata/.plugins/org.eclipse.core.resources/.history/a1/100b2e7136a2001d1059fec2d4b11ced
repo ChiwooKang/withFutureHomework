@@ -1,0 +1,13 @@
+package week1.bookmanage.main;
+
+import week1.bookmanage.vo.Book;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Book book = new Book();
+		book.view();
+
+	}
+
+}
