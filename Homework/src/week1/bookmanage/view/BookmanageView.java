@@ -2,12 +2,15 @@ package week1.bookmanage.view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 import week1.bookmanage.vo.Book;
 
 public class BookmanageView {
 	
 	Scanner sc = new Scanner(System.in);
+	
+	UUID u =  UUID.randomUUID();
 	
 	Book book = new Book();
 	 
