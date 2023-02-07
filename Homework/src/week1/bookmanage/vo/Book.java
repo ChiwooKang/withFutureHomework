@@ -11,7 +11,7 @@ public class Book {
 	private String bookWriter;
 	
 	
-	private ArrayList<Book> bookList = new ArrayList<Book>();
+	
 	
 	
 

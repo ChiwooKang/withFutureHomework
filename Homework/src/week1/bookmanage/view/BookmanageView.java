@@ -10,13 +10,16 @@ public class BookmanageView {
 	
 	Scanner sc = new Scanner(System.in);
 	
-	UUID u =  UUID.randomUUID();
+	
 	
 	Book book = new Book();
 	 
 	 private ArrayList<Book> bookList = new ArrayList<Book>();
 	
 	 public void view() {
+		 
+		 
+		 
 			while(true) {
 				System.out.println("도서관리 프로그램입니다.");
 				System.out.println("1.전체 조회/2.도서 번호로 조회/3.도서 업데이트/4.도서 삭제/5.도서 추가/0.종료");
@@ -145,8 +148,12 @@ public class BookmanageView {
 		 
 		    } 
 		private void insertBook() {
+			
+			Book book = new Book();
+			
+			book.setBookNo(UUID.randomUUID().toString());
+			
 			 while (true) {
-		            Book book = new Book();
 		            
 		            while (true) {
 		                int cnt=0;
