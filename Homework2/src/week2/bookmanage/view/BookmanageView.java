@@ -21,21 +21,11 @@ public class BookmanageView {
             String input = sc.nextLine();
 
             switch (input) {
-                case ("1"):
-                    searchAll();
-                    break;
-                case ("2"):
-                    searchNumber();
-                    break;
-                case ("3"):
-                    updateBook();
-                    break;
-                case ("4"):
-                    deleteBook();
-                    break;
-                case ("5"):
-                    insertBook();
-                    break;
+                case ("1"): searchAll(); break;
+                case ("2"): searchNumber(); break;
+                case ("3"): updateBook(); break;
+                case ("4"): deleteBook(); break;
+                case ("5"): insertBook(); break;
                 case ("0"):
                     System.out.println("프로그램을 종료합니다.");
                     System.exit(0);
