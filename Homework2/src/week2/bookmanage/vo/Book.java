@@ -1,17 +1,11 @@
-package week1.bookmanage.vo;
-
+package week2.bookmanage.vo;
 
 public class Book {
-	
-	
+
 	private String bookNo;
 	private String bookTitle;
 	private String bookWriter;
-	
-	
-	
-	
-	
+
 
 	public String getBookNo() {
 		return bookNo;
@@ -36,10 +30,4 @@ public class Book {
 	public void setBookWriter(String bookWriter) {
 		this.bookWriter = bookWriter;
 	}
-
 }
-
-
-	
-
-
