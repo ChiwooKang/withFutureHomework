@@ -69,7 +69,7 @@ public class BookmanageView {
 	                System.exit(0);
 	            } else {
 	                System.out.println("잘못 누르셨습니다. 초기화면으로 이동합니다.");
-	                
+	          
 	                break; 
 	            } 
 				
