@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 class Solution {
 	/*
 	 * public String solution(String s) { String[] arr = s.split(" "); BigDecimal
@@ -22,21 +24,36 @@ class Solution {
 	 * return list.get(0) + " " + list.get(list.size()-1); }
 	 */
 	
-	 public int solution(int[] A, int[] B) {
-		
-		  
-	      Arrays.sort(A);
-	      Arrays.sort(B);
-	      int length = A.length;
-	      int sum = 0;
-	      for (int i = 0; i < length; i++) {
-	          sum += A[i] * B[length - i - 1];
-	      }
-
-		System.out.println("Hello Java");
-
-	      return sum;
-	  }
+	/*
+	 * public int solution(int[] A, int[] B) {
+	 * 
+	 * 
+	 * Arrays.sort(A); Arrays.sort(B); int length = A.length; int sum = 0; for (int
+	 * i = 0; i < length; i++) { sum += A[i] * B[length - i - 1]; }
+	 * 
+	 * System.out.println("Hello Java");
+	 * 
+	 * return sum; }
+	 */
+	
+	public int[] solution(int[]arr, int divisor) {
+		int[]answer = new int[arr.length];
+		int count = 0;
+		for(int i =0; i<arr.length; i++) {
+			if(arr[i]%divisor ==0) {
+				answer[count] = arr[i];
+				count++;
+			}
+		}
+		if(count == 0 ) {
+			return new int[] {-1};
+			
+		}else {
+			int[]result = Arrays.copyOf(answer, count);
+			Arrays.sort(result);
+			return result;
+		}
+	}
     
 	public static void main(String[] args) {
 		
@@ -46,12 +63,13 @@ class Solution {
 		 * solution("111111111111111111111111111111111111111111111111111111 1233"));
 		 */
 		
-			int[]A = {1001,2002};
-			int[]B = {5,4,4};
+		int arr[] = {5,9,7,10};
+		int divisor = 5;
+				
 	
 		
 		
-		System.out.println(solution.solution(A, B));
+		System.out.println(solution.solution(arr,divisor));
 	}
 
 }

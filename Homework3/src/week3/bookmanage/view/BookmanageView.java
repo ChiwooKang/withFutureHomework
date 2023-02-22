@@ -2,8 +2,6 @@ package week3.bookmanage.view;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -78,24 +76,38 @@ public class BookmanageView {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("수정할 도서 번호를 입력하세요.");
 		String bookNo = sc.nextLine();
-		List<Book>result = books.stream()
-				.filter(book -> book.getBookNo() == bookNo)
-				.collect(Collectors.toList());
-		if(result.isEmpty()) {
-			System.out.println("일치하는 도서가 없습니다.");
-				
-		}else {
-			System.out.println("도서명을 입력하세요");
-			String bookTitle = sc.nextLine();
-			System.out.println("작가를 입력하세요");
-			String bookWriter = sc.nextLine();
-			
-			result.get(0).setBookTitle(bookTitle);
-			result.get(0).setBookWriter(bookWriter);
-			
-			System.out.println("정보 수정 완료입니다.");
-			
-		}
+		System.out.println(bookNo);
+//		List<Book>result = books.stream()
+		books.stream()
+				.filter(book -> book.getBookNo().equals(bookNo))
+				.forEach(book -> {
+					System.out.println("도서명을 입력하세요");
+					String bookTitle = sc.nextLine();
+					System.out.println("작가를 입력하세요");
+					String bookWriter = sc.nextLine();
+					
+					book.setBookTitle(bookTitle);
+					book.setBookWriter(bookWriter);
+				});
+//				.collect(Collectors.toList());
+//		if(result.isEmpty()) {
+//			System.out.println("일치하는 도서가 없습니다.");
+//		}
+//		if(result.isEmpty()) {
+//			System.out.println("일치하는 도서가 없습니다.");
+//				
+//		}else {
+//			System.out.println("도서명을 입력하세요");
+//			String bookTitle = sc.nextLine();
+//			System.out.println("작가를 입력하세요");
+//			String bookWriter = sc.nextLine();
+//			
+//			result.get(0).setBookTitle(bookTitle);
+//			result.get(0).setBookWriter(bookWriter);
+//			
+//			System.out.println("정보 수정 완료입니다.");
+//			
+//		}
 	}
 	
 	
@@ -103,14 +115,14 @@ public class BookmanageView {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("삭제를 원하는 도서의 번호를 입력하세요");
 		String bookNo = sc.nextLine();
-		List<Book> result = books.stream()
-							.filter(book -> book.getBookNo() == bookNo)
-							.collect(Collectors.toList());
-		if(result.isEmpty()) {
+		boolean result = books.removeIf(book -> book.getBookNo().equals(bookNo));
+							/*.filter(book -> book.getBookNo().equals(bookNo))
+							.collect(Collectors.toList());*/
+		if(!result) {
 			System.out.println("삭제할 도서가 없습니다.");
 			
 		}else {
-			books.remove(result.get(0));
+			//books.remove(result.get(0));
 			System.out.println("도서 삭제가 완료되었습니다.");
 		}
 		
@@ -145,8 +157,11 @@ public class BookmanageView {
 	    String bookNo = UUID.randomUUID().toString();
 
 	    Book book = new Book(bookNo, bookTitle, bookWriter);
-	    books.add(book);
-
+	    books = Stream.concat(books.stream(), Stream.of(book))
+	    					.collect(Collectors.toList());
+	    
+	    books.stream().forEach(System.out::println);
+	    
 	    System.out.println("도서가 등록되었습니다.");
 	}
 	
