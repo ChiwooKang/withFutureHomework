@@ -1,10 +1,10 @@
-package week4.bookmage.service;
+package week4.bookmage.application.service;
 
 import java.util.List;
 
-import jakarta.transaction.Transactional;
-import week4.bookmage.entity.Book;
-import week4.bookmage.repository.BookmanageRepository;
+//import jakarta.transaction.Transactional;
+import week4.bookmage.application.entity.Book;
+import week4.bookmage.application.repository.BookmanageRepository;
 
 public class BookmanageService {
 

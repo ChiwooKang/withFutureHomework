@@ -1,14 +1,14 @@
-package week4.bookmage.entity;
+package week4.bookmage.application.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+//import jakarta.persistence.Entity;
+//import jakarta.persistence.Id;
+//import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "book")
+//@Entity
+//@Table(name = "book")
 public class Book {
 	
-	@Id
+//	@Id
 	private Integer bookNo;
 	private String bookTitle;
 	private String bookWriter;
@@ -29,7 +29,7 @@ public class Book {
 	}
 	public Integer getBookNo() {
 		
-		return bookNo;
+		return bookNo ;
 	}
 	
 	

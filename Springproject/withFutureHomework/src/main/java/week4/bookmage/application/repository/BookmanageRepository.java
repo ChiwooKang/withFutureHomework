@@ -1,4 +1,4 @@
-package week4.bookmage.repository;
+package week4.bookmage.application.repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import week4.bookmage.entity.Book;
+import week4.bookmage.application.entity.Book;
 
 @Repository
 public class BookmanageRepository {

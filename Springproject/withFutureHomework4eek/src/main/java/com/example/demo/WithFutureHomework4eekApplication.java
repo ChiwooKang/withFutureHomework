@@ -1,18 +1,13 @@
-package week4.bookmage.application;
+package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
-
 @SpringBootApplication
-//@EnableSwagger2
-public class BookmanageApplication {
+public class WithFutureHomework4eekApplication {
 
 	public static void main(String[] args) {
-		
-		SpringApplication.run(BookmanageApplication.class, args);
-
+		SpringApplication.run(WithFutureHomework4eekApplication.class, args);
 	}
 
 }
