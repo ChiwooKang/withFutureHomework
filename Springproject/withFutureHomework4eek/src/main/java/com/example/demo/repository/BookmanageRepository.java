@@ -4,39 +4,36 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Book;
-
-
-
+import com.example.demo.entity.BookID;
 @Repository
 public class BookmanageRepository {
 
-	private static Map<Integer, Book>books = new HashMap<>();
-	
-	public static List<Book> searchAll(){
+	private static Map<Integer, Book> books = new HashMap<>();
+
+	public List<Book> searchAll() {
 		return new ArrayList<>(books.values());
 	}
-	
-	public static Book searchNumber(Integer bookNo) {
-		
+
+	public Book searchNumber(Integer bookNo) {
 		return books.get(bookNo);
 	}
-	
-	public Book updateBook(Integer bookNo, Book book) {
-		
-		return books.put(bookNo, book);
+
+	public Book updateBook(Book book) {
+		books.put(book.getBookID().getBookNo(), book);
+		return book;
 	}
-	
-	public Book deleteBook(Integer bookNo) {
-		
-		return books.remove(bookNo);
+
+	public Book deleteBook(Book book) {
+		return books.remove(book.getBookID().getBookNo());
 	}
-	
+
 	public Book insertBook(Book book) {
-		
-		return books.put(book.getBookNo(), book);
+		books.put(book.getBookID().getBookNo(), book);
+		return book;
 	}
 }

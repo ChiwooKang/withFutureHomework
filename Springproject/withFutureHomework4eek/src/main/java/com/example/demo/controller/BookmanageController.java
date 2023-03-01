@@ -16,41 +16,38 @@ import com.example.demo.entity.Book;
 import com.example.demo.service.BookmanageService;
 
 
-
 @RestController
 @RequestMapping("/books")
 public class BookmanageController {
 
-	@Autowired
 	private BookmanageService bookmanageService;
-	
+
+	public BookmanageController(BookmanageService bookmanageService) {
+		this.bookmanageService = bookmanageService;
+	}
+
 	@GetMapping
-	public List<Book> searchAll(){
+	public List<Book> searchAll() {
 		return bookmanageService.searchAll();
 	}
-	
+
 	@GetMapping("/{bookNo}")
 	public Book searchNumber(@PathVariable Integer bookNo) {
-		
-		return bookmanageService.searchNumber(bookNo); 
+		return bookmanageService.searchNumber(bookNo);
 	}
-	
-	@PutMapping
-	public Book  updateBook(@PathVariable Integer bookNo, @RequestBody Book book) throws Exception {
-		
+
+	@PutMapping("/{bookNo}")
+	public Book updateBook(@PathVariable Integer bookNo, @RequestBody Book book) throws Exception {
 		return bookmanageService.updateBook(bookNo, book);
 	}
-	
+
 	@DeleteMapping("/{bookNo}")
-	public Book deleteBook(@PathVariable Integer bookNo) {
-		
+	public Book deleteBook(@PathVariable Integer bookNo) throws Exception {
 		return bookmanageService.deleteBook(bookNo);
 	}
-	
+
 	@PostMapping
 	public Book insertBook(@RequestBody Book book) {
-		
 		return bookmanageService.insertBook(book);
 	}
-	
 }

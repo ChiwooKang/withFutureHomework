@@ -1,76 +1,54 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Book;
+import com.example.demo.entity.BookID;
 import com.example.demo.repository.BookmanageRepository;
 
 
-@Component
+
+@Service
 public class BookmanageService {
 
+	private BookmanageRepository bookmanageRepository;
 
-	
-	/** 전체 조회
-	 * @return
-	 */
+	public BookmanageService(BookmanageRepository bookmanageRepository) {
+		this.bookmanageRepository = bookmanageRepository;
+	}
+
 	public List<Book> searchAll() {
-		
-		BookmanageRepository bookmanageRepository = new BookmanageRepository();
-		
 		return bookmanageRepository.searchAll();
 	}
 
-	/** 번호로 조회
-	 * @param bookNo
-	 * @return
-	 */
 	public Book searchNumber(Integer bookNo) {
-		
-		BookmanageRepository bookmanageRepository = new BookmanageRepository();
-		
 		return bookmanageRepository.searchNumber(bookNo);
 	}
 
-	
-	public  Book updateBook(Integer bookNo, Book book) throws Exception {
-		
-		BookmanageRepository bookmanageRepository = new BookmanageRepository();
-		
-		Book oneBook = BookmanageRepository.searchNumber(bookNo);
-		
-		if(oneBook == null) {
+	public Book updateBook(Integer bookNo, Book book) throws Exception {
+		Book existingBook = bookmanageRepository.searchNumber(bookNo);
+		if (existingBook == null) {
 			throw new Exception("번호로 찾을수 없는 책 입니다" + bookNo);
 		}
-		
-		oneBook.setBookTitle(book.getBookTitle());
-		oneBook.setBookWriter(book.getBookWriter());
-		
-		
-	
-		
-		return bookmanageRepository.updateBook(bookNo, oneBook); 
-		
+		existingBook.setBookWriter(book.getBookWriter());
+		return bookmanageRepository.updateBook(existingBook);
 	}
-	
-	public Book deleteBook(Integer bookNo) {
-		
-		BookmanageRepository bookmanageRepository = new BookmanageRepository();
-		
-		
-		
-		return bookmanageRepository.deleteBook(bookNo);
+
+	public Book deleteBook(Integer bookNo) throws Exception {
+		Book existingBook = bookmanageRepository.searchNumber(bookNo);
+		if (existingBook == null) {
+			throw new Exception("삭제할 책이 존재하지 않습니다.");
+		}
+		return bookmanageRepository.deleteBook(existingBook);
 	}
-	
+
 	public Book insertBook(Book book) {
-		
-		BookmanageRepository bookmanageRepository = new BookmanageRepository();
-		
 		return bookmanageRepository.insertBook(book);
-		
 	}
-
 }
-
