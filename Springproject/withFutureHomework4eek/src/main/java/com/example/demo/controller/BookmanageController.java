@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Book;
+import com.example.demo.entity.BookID;
 import com.example.demo.service.BookmanageService;
 
 
@@ -20,6 +21,7 @@ import com.example.demo.service.BookmanageService;
 @RequestMapping("/books")
 public class BookmanageController {
 
+	@Autowired
 	private BookmanageService bookmanageService;
 
 	public BookmanageController(BookmanageService bookmanageService) {
@@ -31,23 +33,26 @@ public class BookmanageController {
 		return bookmanageService.searchAll();
 	}
 
-	@GetMapping("/{bookNo}")
-	public Book searchNumber(@PathVariable Integer bookNo) {
-		return bookmanageService.searchNumber(bookNo);
+	@GetMapping("/{bookNo}/{bookTitle}")
+	public Book searchNumber(@PathVariable int bookNo, @PathVariable String bookTitle) {
+	    BookID bookId = new BookID(bookNo, bookTitle);
+	    return bookmanageService.searchNumber(bookId);
 	}
 
-	@PutMapping("/{bookNo}")
-	public Book updateBook(@PathVariable Integer bookNo, @RequestBody Book book) throws Exception {
-		return bookmanageService.updateBook(bookNo, book);
+	@PutMapping
+	public Book updateBook(@RequestBody Book book) throws Exception {
+	    BookID bookId = new BookID(book.getBookID().getBookNo(),book.getBookID().getBookTitle());
+	    return bookmanageService.updateBook(bookId, book);
 	}
 
-	@DeleteMapping("/{bookNo}")
-	public Book deleteBook(@PathVariable Integer bookNo) throws Exception {
-		return bookmanageService.deleteBook(bookNo);
+	@DeleteMapping("/{bookNo}/{bookTitle}")
+	public Book deleteBook(@PathVariable int bookNo, @PathVariable String bookTitle) throws Exception {
+		BookID bookId = new BookID(bookNo,bookTitle );
+		return bookmanageService.deleteBook(bookId);
 	}
 
 	@PostMapping
-	public Book insertBook(@RequestBody Book book) {
+	public Book insertBook(@RequestBody Book book) throws Exception {
 		return bookmanageService.insertBook(book);
 	}
 }

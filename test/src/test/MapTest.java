@@ -88,7 +88,7 @@ public class MapTest {
 		System.out.println(person.get("age"));
 		System.out.println(person.get("address"));
 		System.out.println(person.get("gender"));
-		System.out.println(person.get("score"));
+		
 		
 		//keySet() ; Map에서 key 부분만을 추출하여 Set 형태로 반환
 		

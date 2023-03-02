@@ -11,17 +11,17 @@ public class Run {
 		
 		List listTest = new List();
 		
-		// listTest.ex1();
+	//	 listTest.ex1();
 		
 		SetTest setTest = new SetTest();
 		
 		// setTest.ex1();
-		// setTest.ex2();
+		//setTest.ex2();
 		
 		MapTest mapTest = new MapTest();
 		
 //		mapTest.ex1();
-		mapTest.ex2();
+//		mapTest.ex2();
 		
 		StackTest stackTest = new StackTest();
 		
