@@ -22,7 +22,7 @@ import com.example.demo.service.BookmanageService;
 @RequestMapping("/books")
 public class BookmanageController {
 
-	@Autowired
+//	@Autowired
 	private BookmanageService bookmanageService;
 
 	public BookmanageController(BookmanageService bookmanageService) {
