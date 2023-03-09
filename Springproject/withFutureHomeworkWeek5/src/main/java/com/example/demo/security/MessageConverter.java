@@ -17,7 +17,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 @Configuration
 public class MessageConverter implements WebMvcConfigurer { // 메세지 컨버터 삽입할때
 	
-//	@Bean
+	//@Bean
     public HttpMessageConverter<?> htmlEscapingConverter() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.getFactory().setCharacterEscapes(new HTMLCharacterEscapes()); // 
@@ -42,21 +42,30 @@ public class MessageConverter implements WebMvcConfigurer { // 메세지 컨버�
 	 * Config 설정 ObjectMapper objectMapper =
 	 * Jackson2ObjectMapperBuilder.json().build();
 	 * objectMapper.getFactory().setCharacterEscapes(new HTMLCharacterEscapes());
-	 * return new MappingJackson2HttpMessageConverter(objectMapper); }
+	 * return new MappingJackson2HttpMeageConverter(objectMapper); }
 	 */
+    
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+    	
+    	for(int i = 0; i < converters.size(); i ++) {
+    		System.out.println(" remove before converters.get(i) : " + converters.get(i).getSupportedMediaTypes() + " : " + converters.get(i));
+    	}
+        converters.removeIf(converter -> converter instanceof MappingJackson2HttpMessageConverter);
+    }
 
 
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-//        converters.add(htmlEscapingConverter());
+      converters.add(htmlEscapingConverter());
 //    	Iterator keys = converters.iterator();
 //    	while(keys.hasNext()) {
 //    		System.out.println(" add before keys.next() : " + keys.next());
 //    	}
     	
-    	for(int i = 0; i < converters.size(); i ++) {
-    		System.out.println(" remove before converters.get(i) : " + converters.get(i).getSupportedMediaTypes() + " : " + converters.get(i));
-    	}
+//    	for(int i = 0; i < converters.size(); i ++) {
+//    		System.out.println(" remove before converters.get(i) : " + converters.get(i).getSupportedMediaTypes() + " : " + converters.get(i));
+//    	}
     	
 //    	for(int i = 0; i < converters.size(); i ++) {
 //    		if(converters.get(i).getSupportedMediaTypes().contains("application/json") 
@@ -67,18 +76,18 @@ public class MessageConverter implements WebMvcConfigurer { // 메세지 컨버�
 //    		}
 //    	}
     	
-    	Iterator<HttpMessageConverter<?>> keys = converters.iterator();
-
-    	while(keys.hasNext()) {
-//    		if (converters..getSupportedMediaTypes().contains(MediaType.APPLICATION_JSON)) {
-//    			
+//    	Iterator<HttpMessageConverter<?>> keys = converters.iterator();
+//
+//    	while(keys.hasNext()) {
+////    		if (converters..getSupportedMediaTypes().contains(MediaType.APPLICATION_JSON)) {
+////    			
+////    		}
+//    		HttpMessageConverter converter = keys.next();
+//    		if(converter.getSupportedMediaTypes().contains("application/json") ) {
+//    			System.out.println(converter);
+//    			keys.remove();
 //    		}
-    		HttpMessageConverter converter = keys.next();
-    		if(converter.getSupportedMediaTypes().contains("application/json") ) {
-    			System.out.println(converter);
-    			keys.remove();
-    		}
-    	}
+//    	}
     	
     	
     	for(int i = 0; i < converters.size(); i ++) {
