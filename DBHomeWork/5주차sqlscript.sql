@@ -76,7 +76,7 @@ WHERE JOB = 'MANAGER';
 -- 조회조건 : 직무가 SALESMAN이 아닌 직원
 SELECT DEPTNO, EMPNO, ENAME, JOB 
 FROM SCOTT.EMP 
-WHERE JOB  NOT LIKE 'SALESMAN';
+WHERE JOB  != 'SALESMAN';
 
 -- 15. 급여가 1500이상 ~ 2850이하의 범위에 속하는 사원의 이름 및 급여를 조회
 SELECT ENAME, SAL 
@@ -115,7 +115,7 @@ ORDER BY ENAME ASC, EMPNO ASC;
 SELECT ENAME AS "이름", DEPTNO AS "부서 번호" 
 FROM SCOTT.EMP 
 WHERE DEPTNO = 10 OR DEPTNO = 30 
-ORDER BY ENAME ASC, DEPTNO ASC;
+ORDER BY "이름" ASC;
 
 -- 3) 조회 컬럼명에 대한 인덱스번호로  정렬 조회
 SELECT ENAME, DEPTNO 
@@ -194,7 +194,7 @@ FROM SCOTT.EMP;
 -- 32. 근무기간에 따른 사원들에 대한 교육을 진행하기로 하였다.
 -- 직원들의 사번, 이름, 입사일, 근무기간(년수, 년이하버림)의 정보를
 -- 근무기간이 작은 순서데로 조회하여라.
--- 근무기간 = 현재날짜 - 입사날짜
+-- 근무기간 = 현재날짜 - 입사날짜99
 -- 근무년수가 33년 이상인 직원의 명단을 출력
 
 -- 현재날짜 = sysdate
