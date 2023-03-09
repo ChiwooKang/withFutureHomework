@@ -61,8 +61,8 @@ SELECT ENAME, DEPTNO
 FROM SCOTT.EMP 
 WHERE EMPNO = 7788;
 
--- 13. 출력정보 : 부서번호, 사번, 이름, 직무
--- 조회조건 : 직무가 manager 인 직원
+
+-- 12. 10번 부서원중에서 급여가 3000이상인 직원
 SELECT *  FROM SCOTT.EMP 
 WHERE DEPTNO = 10 AND SAL >= 3000;
 
@@ -88,26 +88,34 @@ SELECT ENAME, SAL
 FROM SCOTT.EMP 
 WHERE SAL < 1500 OR SAL > 2850;
 
+-- 17. 출력정보 : 부서번호, 사번, 이름, 급여
+-- 조회조건 : 급여가 3000이상이거나, 부서번호 10인 직원
+
+SELECT DEPTNO, EMPNO, ENAME, SAL
+FROM SCOTT.EMP
+WHERE SAL >= 3000 OR DEPTNO = 10;
+
 -- 18. 출력정보 : 부서번호, 사번, 이름, 직무
 -- 조회조건 : 부서번호가 10, 20 부서원 조회
 SELECT DEPTNO, EMPNO, ENAME, SAL 
 FROM SCOTT.EMP 
-WHERE SAL >= 3000 OR DEPTNO = 10;
+WHERE DEPTNO = 10 OR DEPTNO = 20;
 
 -- 19. 10번 및 30번 부서에 속하는 모든 사원의 이름과 부서 번호를 조회하라.
 -- 단, 이름을 알파벳순으로 정렬하여 출력하라.
  
 -- 1) 컬럼명 정렬 조회
-SELECT DEPTNO, EMPNO, ENAME, JOB 
+SELECT ENAME, EMPNO
 FROM SCOTT.EMP 
-WHERE DEPTNO = 10 OR DEPTNO = 20;
-ORDER BY ENAME ASC;
+WHERE DEPTNO = 10 OR DEPTNO = 30
+ORDER BY ENAME ASC, EMPNO ASC;
 
 -- 2) alias(별명) 정렬 조회
+
 SELECT ENAME AS "이름", DEPTNO AS "부서 번호" 
 FROM SCOTT.EMP 
 WHERE DEPTNO = 10 OR DEPTNO = 30 
-ORDER BY ENAME ASC;
+ORDER BY ENAME ASC, DEPTNO ASC;
 
 -- 3) 조회 컬럼명에 대한 인덱스번호로  정렬 조회
 SELECT ENAME, DEPTNO 
