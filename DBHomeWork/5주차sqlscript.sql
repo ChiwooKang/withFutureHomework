@@ -149,7 +149,7 @@ WHERE DEPTNO IN (10,20);
 SELECT * FROM SCOTT.EMP 
 WHERE DEPTNO NOT IN (10, 20);
 
--- 26. 급여가 1500이상 ~ 2850이하의 범위에 속하는 사원의 이름 및 급여를 조회
+-- 26. 급여가 1500이상 ~ 2850이하의 범위에 속하는 사원의 이름 및 급여를 조회f
 SELECT ENAME, SAL 
 FROM SCOTT.EMP 
 WHERE SAL BETWEEN 1500 AND 2850;
