@@ -9,14 +9,15 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>withFutureHomework4eek</artifactId>
+	<artifactId>withFutureHomeworkWeek6</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>withFutureHomework4eek</name>
+	<name>withFutureHomeworkWeek6</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jdbc</artifactId>
@@ -68,17 +69,53 @@
 			<version>3.0.0</version>
 		</dependency> 
 		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13.2</version>
-			<scope>test</scope>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.14.1</version>
 		</dependency>
 		
 		
+		<!-- 아스키 텍스트 -->
+	    <dependency>
+	        <groupId>org.apache.commons</groupId>
+	        <artifactId>commons-text</artifactId>
+	        <version>1.9</version>
+	    </dependency>
+	    
+	    
+	
 		
+		<!-- https://mvnrepository.com/artifact/io.gatling/jsonpath -->
+		<!-- 제이슨 패스  -->
+		<dependency>
+		    <groupId>io.gatling</groupId>
+		    <artifactId>jsonpath_2.12</artifactId>
+		    <version>0.7.0</version>
+		</dependency>
 		
+		<dependency>
+	        <groupId>org.mockito</groupId>
+	        <artifactId>mockito-core</artifactId>
+	        <version>4.1.0</version>
+    	</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-library -->
+		<!-- <dependency>
+		    <groupId>org.hamcrest</groupId>
+		    <artifactId>hamcrest-library</artifactId>
+		    <version>2.2</version>
+		    <scope>test</scope>
+		</dependency> -->
+			
+
+
+			
 	</dependencies>
+		
+
 
 	<build>
 		<plugins>

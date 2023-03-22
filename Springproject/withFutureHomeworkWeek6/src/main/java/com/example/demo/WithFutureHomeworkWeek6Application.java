@@ -3,14 +3,11 @@ package com.example.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 @SpringBootApplication
-@EnableSwagger2
-public class WithFutureHomeworkWeek5Application {
+public class WithFutureHomeworkWeek6Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WithFutureHomeworkWeek5Application.class, args);
+		SpringApplication.run(WithFutureHomeworkWeek6Application.class, args);
 	}
 
 }
