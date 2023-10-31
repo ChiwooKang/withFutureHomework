@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="/js/insertBook.js"></script>
+    <title>도서 삽입하기</title>
+
+    <style>
+        #deleteBook, #updateBook, #searchBook {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+    <div th:include="tableFragment :: bookForm"></div>
+</body>
+</html>

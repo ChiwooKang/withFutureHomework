@@ -1,0 +1,109 @@
+<!-- <!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+<body> -->
+    <!-- <div th:fragment="table-headers">
+        <th th:text="#{number}">번호</th>
+        <th th:text="#{title}">제목</th>
+        <th th:text="#{writer}">작성자</th>
+    </div> -->
+
+    <!-- <h1 th:fragment="header" th:text="#{title.allBooks}">전체조회</h1>
+    <h1 th:fragment="headerForNumber" th:text="#{title.searchNumber}">번호로 검색</h1>
+
+    <tr th:fragment="table-headers">
+        <th th:text="#{number}">번호</th>
+        <th th:text="#{title}">제목</th>
+        <th th:text="#{writer}">작성자</th>
+    </tr>
+    
+    <div th:fragment="bookForm">
+        <form id="bookForm"> -->
+            <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" id="csrfToken"> -->
+            <!-- <label for="bookNo" th:text="#{label.number}">번호:</label>
+            <input type="text" id="bookNo" required>
+            
+            <label for="bookTitle" th:text="#{label.title}">제목:</label>
+            <input type="text" id="bookTitle" required>
+            
+            <label for="bookWriter" th:text="#{label.writer}">작성자:</label>
+            <input type="text" id="bookWriter" required>
+            
+            <input type="button" id="addBook" th:value="#{button.addBook}" value="도서 추가">
+            <input type="button" id="deleteBook" th:value="#{button.deleteBook}" value="도서 삭제">
+            <input type="button" id="updateBook" th:value="#{button.updateBook}" value="도서 수정">
+            <input type="button" id="searchBook" th:value="#{button.searchBook}" value="도서 찾기">
+        </form>
+    </div> -->
+
+    <!-- <div th:fragment="searchForm"> 
+        <form id="searchForm">
+            <label for="searchBookNo" th:text="#{label.searchNumber}">검색할 번호:</label>
+            <input type="text" id="searchBookNo" required>
+            <input type="button" id="searchBook" th:value="#{search.button}"value="도서 검색">
+        </form>
+
+    </div>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <!-- <div th:fragment="table-headers">
+        <th th:text="#{number}">번호</th>
+        <th th:text="#{title}">제목</th>
+        <th th:text="#{writer}">작성자</th>
+    </div> -->
+
+    <h1 th:fragment="header" th:text="#{title.allBooks}">전체조회</h1>
+    <h1 th:fragment="headerForNumber" th:text="#{title.searchNumber}">번호로 검색</h1>
+
+    <tr th:fragment="table-headers">
+        <th></th>
+        <th th:text="#{number}">번호</th>
+        <th th:text="#{title}">제목</th>
+        <th th:text="#{writer}">작성자</th>
+    </tr>
+    
+    <div th:fragment="bookForm">
+        <form id="bookForm">
+            <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" id="csrfToken"> -->
+            <label for="bookNo" th:text="#{label.number}" class="hidden-label">번호:</label>
+            <input type="text" id="bookNo" required>
+        
+            
+            <label for="bookTitle" th:text="#{label.title}" class="hidden-label">제목:</label>
+            <input type="text" id="bookTitle" required>
+            
+            <label for="bookWriter" th:text="#{label.writer}" class="hidden-label">작성자:</label>
+            <input type="text" id="bookWriter" required>
+            
+            <input type="button" id="addBook" th:value="#{button.addBook}" value="도서 추가">
+            <div th:if="${not #httpServletRequest.getRequestURI().contains('insertBooks')}" sec:authorize="hasRole('ROLE_ADMIN')">
+                <input type="button" id="deleteBook" th:value="#{button.deleteBook}" value="도서 삭제">
+                <input type="button" id="updateBook" th:value="#{button.updateBook}" value="도서 수정">
+            </div>
+            <input type="button" id="searchBook" th:if="${not #httpServletRequest.getRequestURI().contains('insertBooks')}" th:value="#{button.searchBook}" value="도서 찾기">
+        </form>
+    </div>
+
+    <div th:fragment="searchForm"> 
+        <form id="searchForm">
+            <label for="searchBookNo" th:text="#{label.searchNumber}">검색할 번호:</label>
+            <input type="text" id="searchBookNo" required>
+            <input type="button" id="searchBook" th:value="#{search.button}"value="도서 검색">
+        </form>
+
+    </div>
+</body>
+</html>
