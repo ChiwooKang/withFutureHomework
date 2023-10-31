@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
@@ -53,6 +54,8 @@ public class BookmanageService {
 //                .orElseThrow(() -> new BookNotFoundException("번호로 찾을 수 없는 책입니다: " + bookNo));
 //    }
 //    
+    
+    @Transactional
     public void deleteBooks(List<Integer> bookNos) {
         List<Book> booksToDelete = bookmanageRepository.findAllById(bookNos);
         if(booksToDelete.size() != bookNos.size()) {

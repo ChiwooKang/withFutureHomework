@@ -241,7 +241,7 @@ function setEvent() {
         window.location.href = window.location.pathname + "?lang=" + selectedLanguage;
    });
 
-   checkbox();
+
 
    $('#addBook').click(function(){
 
@@ -471,26 +471,26 @@ function searchNumber(){
 
 
 
-function checkbox(){
+// function checkbox(){
 
-    $('.bookCheckbox').on('click',function(){
+//     $('.bookCheckbox').on('click',function(){
  
 
-        if($(this).is(':checked')){
+//         if($(this).is(':checked')){
 
        
-            let checkboxId = $(this).attr('id');
-            let bookNo = checkboxId.split('_')[1];
-            let bookTitle = $(this).closest('tr').find('td:nth-child(3)').text();
-            let bookWriter = $(this).closest('tr').find('td:nth-child(4)').text();
+//             let checkboxId = $(this).attr('id');
+//             let bookNo = checkboxId.split('_')[1];
+//             let bookTitle = $(this).closest('tr').find('td:nth-child(3)').text();
+//             let bookWriter = $(this).closest('tr').find('td:nth-child(4)').text();
 
-            console.log(checkboxId, bookNo, bookTitle, bookWriter);
+//             console.log(checkboxId, bookNo, bookTitle, bookWriter);
 
         
-        }
+//         }
 
-    });
-}
+//     });
+// }
 
 
 
