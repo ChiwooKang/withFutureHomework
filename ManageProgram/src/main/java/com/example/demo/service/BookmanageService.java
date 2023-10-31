@@ -44,14 +44,23 @@ public class BookmanageService {
         return bookmanageRepository.save(existingBook);
     }
 
-    public Book deleteBook(int bookNo) {
-        return bookmanageRepository.findById(bookNo)
-                .map(book -> {
-                    bookmanageRepository.delete(book);
-                    return book;
-                })
-                .orElseThrow(() -> new BookNotFoundException("번호로 찾을 수 없는 책입니다: " + bookNo));
+//    public Book deleteBook(int bookNo) {
+//        return bookmanageRepository.findById(bookNo)
+//                .map(book -> {
+//                    bookmanageRepository.delete(book);
+//                    return book;
+//                })
+//                .orElseThrow(() -> new BookNotFoundException("번호로 찾을 수 없는 책입니다: " + bookNo));
+//    }
+//    
+    public void deleteBooks(List<Integer> bookNos) {
+        List<Book> booksToDelete = bookmanageRepository.findAllById(bookNos);
+        if(booksToDelete.size() != bookNos.size()) {
+            throw new BookNotFoundException("하나 이상의 번호로 찾을 수 없는 책이 있습니다.");
+        }
+        bookmanageRepository.deleteAllByBookNoIn(bookNos);
     }
+
 
     public Book insertBook(Book book) {
         validateBook(book);

@@ -219,11 +219,12 @@ $(document).ready(function(){
     let urlParams = new URLSearchParams(window.location.search);
     let selectedLanguage = urlParams.get('lang') || 'ko';
     $("#languageSelect").val(selectedLanguage);
+  
 
     initData();
-    deleteBook();
     searchNumber();
     setEvent();
+  //  deleteBook();
     
     
 });
@@ -252,6 +253,36 @@ function setEvent() {
 
     let bookNo = $(this).data('bookno');
     window.location.href = '/books/detail/'+bookNo;
+
+  });
+
+  $('#deleteBook').click(function(){
+
+    let selectedBooks = [];
+    $('.bookCheckbox:checked').each(function() {
+        let bookNo = $(this).val();
+        selectedBooks.push(bookNo);
+    });
+
+    if (selectedBooks.length === 0) {
+        alert("삭제할 책을 선택해주세요.");
+        return;
+    }
+
+    $.ajax({
+        url: '/books/deleteBook',
+        type: 'DELETE',
+        data: JSON.stringify(selectedBooks),
+        contentType: 'application/json',
+        success: function() {
+            alert("삭제성공");
+            initData();
+        },
+        error: function(XHR) {
+            let errorResponse = JSON.parse(XHR.responseText);
+            alert(errorResponse.message || "에러가 발생했습니다.");
+        }
+    });
 
   });
 
@@ -288,7 +319,7 @@ function initData() {
                 let bookWriter = el.bookWriter;
 
                 str += '<tr>';
-                str += '<td><input type="checkbox" id="pkCheck_' + bookNo + '" class="bookCheckbox"></td>';
+                str += '<td><input type="checkbox" value="' + bookNo + '" class="bookCheckbox"></td>';
                 str += '<td>' + bookNo + '</td>';
                 str += '<td class="bookTitleClick" data-bookno="' + bookNo + '">' + bookTitle + '</td>';
                 str += '<td>' + bookWriter + '</td>';
@@ -307,66 +338,93 @@ function initData() {
 
 
 
-function deleteBook() {
-    $('#deleteBook').click(function() {
-        let selectedBooks = [];
-        $('.bookCheckbox:checked').each(function() {
-            let checkboxId = $(this).attr('id');
-            let bookNo = checkboxId.split('_')[1];
-            selectedBooks.push(bookNo);
-        });
+// function deleteBook() {
+//     $('#deleteBook').click(function() {
+//         let selectedBooks = [];
+//         $('.bookCheckbox:checked').each(function() {
+//             let bookNo = $(this).val();
+//             selectedBooks.push(bookNo);
+//         });
 
-        if (selectedBooks.length === 0) {
-            alert("삭제할 책을 선택해주세요.");
-            return;
-        } else if (selectedBooks.length > 1) {
-            alert("한 번에 하나의 책만 삭제할 수 있습니다.");
-            return;
-        }
+//         if (selectedBooks.length === 0) {
+//             alert("삭제할 책을 선택해주세요.");
+//             return;
+//         } 
 
-        let bookNo = selectedBooks[0];  // 첫 번째로 체크된 책의 번호만 사용
+       
 
-        $.ajax({
-            url: `/books/${bookNo}`, 
-            type: 'DELETE',
-            async: true,
-            contentType: 'application/json',
-            success: function(data) {
-                alert("삭제성공");
-                $('#bookForm')[0].reset();
-                initData();
-            },
-            error: function(XHR) {
-                let errorResponse = JSON.parse(XHR.responseText);
-                let errors = errorResponse.errors; 
+//         $.ajax({
+//             url: '/books', 
+//             type: 'DELETE',
+//             async: true,
+//             contentType: 'application/json',
+//             success: function(data) {
+//                 alert("삭제성공");
+//              //   $('#bookForm')[0].reset();
+//                 initData();
+//             },
+//             error: function(XHR) {
+//                 let errorResponse = JSON.parse(XHR.responseText);
+//                 let errors = errorResponse.errors; 
                 
-                if (errors) {
-                    let errorMessage = Object.values(errors).join('\n');
-                    alert(errorMessage);
-                } else if (errorResponse.message) {
-                    alert(errorResponse.message);
-                } else {
-                    alert("에러가 발생했습니다."); 
-                }
-            }
-        });
-    });
-}
+//                 if (errors) {
+//                     let errorMessage = Object.values(errors).join('\n');
+//                     alert(errorMessage);
+//                 } else if (errorResponse.message) {
+//                     alert(errorResponse.message);
+//                 } else {
+//                     alert("에러가 발생했습니다."); 
+//                 }
+//             }
+//         });
+//     });
+// }
+
+// function deleteBook() {
+//     let selectedBooks = [];
+//     $('.bookCheckbox:checked').each(function() {
+//         let bookNo = $(this).val();
+//         selectedBooks.push(bookNo);
+//     });
+
+//     if (selectedBooks.length === 0) {
+//         alert("삭제할 책을 선택해주세요.");
+//         return;
+//     }
+
+//     $.ajax({
+//         url: '/books/deleteBook',
+//         type: 'DELETE',
+//         data: JSON.stringify(selectedBooks),
+//         contentType: 'application/json',
+//         success: function() {
+//             alert("삭제성공");
+//             initData();
+//         },
+//         error: function(XHR) {
+//             let errorResponse = JSON.parse(XHR.responseText);
+//             alert(errorResponse.message || "에러가 발생했습니다.");
+//         }
+//     });
+// }
+
 
 
 
 function searchNumber(){
     $('#searchBook').click(function() {
+        alert('확인중')
         let bookNo = $('#searchBookNo').val();
     
         $.ajax({
             url: `/books/${bookNo}`,
           //  url:'/books/allBooks',
             type: 'GET',
-            async: false,
+            async: true,
             contentType: 'application/json',  
             success: function(data) {
 
+                console.log(data)
                 if (data){
 
                     let str = '';
@@ -375,7 +433,6 @@ function searchNumber(){
                     let bookWriter = data.bookWriter
     
                     str += '<tr>';
-                    str += '<td><input type="checkbox" id="pkCheck_' + bookNo + '" class="bookCheckbox"></td>';
                     str += '<td>' + bookNo + '</td>';
                     str += '<td class="bookTitleClick" data-bookno="' + bookNo + '">' + bookTitle + '</td>';
                     str += '<td>' + bookWriter + '</td>';
@@ -383,9 +440,9 @@ function searchNumber(){
               
             
                     
+                    $('#searchNumber tbody').html(str);
                 }
                 
-                $('#searchNumber tbody').html(str);
                 
             },
 
@@ -429,21 +486,10 @@ function checkbox(){
 
             console.log(checkboxId, bookNo, bookTitle, bookWriter);
 
-            displayBookInfo({
-                bookNo: bookNo,
-                bookTitle: bookTitle,
-                bookWriter: bookWriter
-            });
+        
         }
 
     });
-}
-
-
-function displayBookInfo(bookInfo) {
-    $("#bookNo").val(bookInfo.bookNo);
-    $("#bookTitle").val(bookInfo.bookTitle);
-    $("#bookWriter").val(bookInfo.bookWriter);
 }
 
 

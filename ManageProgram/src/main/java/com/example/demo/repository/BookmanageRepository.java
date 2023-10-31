@@ -10,4 +10,6 @@ public interface BookmanageRepository extends JpaRepository<Book, Integer> {
 	
 	List<Book> findByBookTitle(String bookTitle);
 
+	  void deleteAllByBookNoIn(List<Integer> ids);
+
 }

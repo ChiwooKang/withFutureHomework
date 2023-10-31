@@ -42,7 +42,6 @@ public class BookmanageController {
   
 
   @GetMapping("/{bookNo}")
- 
   public Book searchNumber(@PathVariable int bookNo) {
       return bookmanageService.searchNumber(bookNo);
   }
@@ -54,10 +53,16 @@ public class BookmanageController {
   }
 
   
-  @DeleteMapping("/{bookNo}")
-  public Book deleteBook(@PathVariable int bookNo) throws Exception {
-      return bookmanageService.deleteBook(bookNo);
+//  @DeleteMapping("/deleteBook")
+//  public Book deleteBook(@PathVariable int bookNo) throws Exception {
+//      return bookmanageService.deleteBook(bookNo);
+//  }
+//  
+  @DeleteMapping("/deleteBook")
+  public void deleteBooks(@RequestBody List<Integer> bookNos) throws Exception {
+      bookmanageService.deleteBooks(bookNos);
   }
+
   
   
   @PostMapping
